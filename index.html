@@ -5,62 +5,73 @@
 <title>Crown Agency Uganda</title>
 <style>
 body{font-family:Arial;background:#111;color:white;margin:0;padding:20px}
-.card{background:white;color:black;padding:20px;border-radius:15px;max-width:500px;margin:20px auto}
-.yellow{background:#FFD700;padding:15px;border-radius:10px;text-align:center;font-weight:bold;border:2px solid black;color:black;margin-top:20px}
-input{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #ccc;box-sizing:border-box}
-button{background:black;color:#FFD700;padding:15px;width:100%;border-radius:10px;font-weight:bold;font-size:16px;border:2px solid #FFD700}
-#welcome{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;z-index:999;padding:15px;box-sizing:border-box}
-.welcome-box{background:white;color:black;padding:25px;border-radius:20px;max-width:400px;text-align:center;border:4px solid #FFD700}
+.card{background:white;color:black;padding:15px;margin:10px 0;border-radius:10px}
+.yellow{background:#FFD700;padding:15px;margin:15px 0;border-radius:10px;text-align:center;font-weight:bold;color:black}
+input{width:95%;padding:12px;margin:8px 0;border-radius:5px;border:1px solid #ccc}
+button{background:black;color:#FFD700;padding:15px;width:100%;border:none;border-radius:10px;font-weight:bold;font-size:16px;cursor:pointer}
+#welcome{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:999;display:flex;align-items:center;justify-content:center}
+.welcome-box{background:white;color:black;padding:25px;border-radius:20px;width:90%;max-width:380px;text-align:center;border:4px solid #FFD700}
 </style>
 </head>
 <body>
 
-<div id="welcome" onclick="this.style.display='none'">
+<div id="welcome">
 <div class="welcome-box">
-<h1>👑 WELCOME TO<br>CROWN AGENCY!</h1>
-<p><b>Serving All Uganda</b></p>
-<p style="background:#FFF8DC;padding:10px;border-radius:10px;text-align:left">
-<b>💰 INSTALLMENT:</b><br>
-✅ 50% Deposit to START<br>
-✅ 25% Mid-project<br>
-✅ 25% Before Delivery
-</p>
-<p><b>MTN MoMo: 0766593537</b><br>Namakoye Shanita</p>
+<h1 style="color:#111;">👑 WELCOME TO<br>CROWN AGENCY<br>UGANDA</h1>
+<p><b>We Don't Just Design. We Crown Brands.</b></p>
+<div class="yellow" style="margin:10px 0;text-align:left">
+💰 INSTALLMENT POLICY<br><br>
+1️⃣ 50% to START work<br>
+2️⃣ 25% to see draft<br>
+3️⃣ 25% to get final files<br><br>
+We don't start without deposit!
+</div>
+<div style="background:#111;color:#FFD700;padding:12px;border-radius:10px;margin:10px 0">
+📱 PAYMENT: MTN MoMo<br><b style="font-size:20px">0766593537</b><br>Names: Namakoye Shanita
+</div>
+<p style="font-size:13px">Serving ALL Uganda: Kampala | Gulu | Mbarara | Mbale</p>
 <button onclick="document.getElementById('welcome').style.display='none'">ENTER PORTAL →</button>
 </div>
 </div>
 
+<h1 style="text-align:center;color:#FFD700;">👑 CROWN AGENCY</h1>
+<p style="text-align:center;">Client Management System</p>
+
+<div class="yellow">💰 MTN MoMo: 0766593537 | Policy: 50% Before We Start</div>
+
 <div class="card">
-<h2>👑 Crown Agency Portal</h2>
-<p>All Uganda - Kampala | Gulu | Mbarara | Jinja</p>
-<input placeholder="Client Email e.g. client@gmail.com" id="email">
-<input placeholder="Project Name e.g. Salon Logo" id="project">
-<input placeholder="What client wants? e.g. Pink logo" id="brief">
+<h3>➕ Create New Project</h3>
+<input id="email" placeholder="Client Email (e.g. client@gmail.com)">
+<input id="project" placeholder="Project Name (e.g. Logo Design)">
+<input id="brief" placeholder="Brief - what does client want?">
 <button onclick="createProject()">Create Project & Assign to Client</button>
-<div id="projects" style="margin-top:20px"><b>Active Projects</b><br><small>Your jobs will appear here</small></div>
-<div class="yellow">
-💰 LIPA TO START<br><br>
-MTN MoMo: 0766593537<br>Names: Namakoye Shanita<br><br>
-<div style="background:white;padding:10px;border-radius:8px">50% Deposit BEFORE work starts!<br>Send screenshot on WhatsApp</div>
 </div>
+
+<div class="card">
+<h3>📁 Active Projects</h3>
+<div id="list">No projects yet. Create one above!</div>
 </div>
 
 <script>
 function createProject(){
-  let email = document.getElementById('email').value;
-  let project = document.getElementById('project').value;
-  let brief = document.getElementById('brief').value;
-  if(!email || !project){ alert('Please fill Email and Project Name'); return; }
-  let div = document.getElementById('projects');
-  div.innerHTML += `<div style="border:2px solid gold;padding:10px;margin:10px 0;border-radius:10px;background:#fff8dc;color:black"><b>${project}</b><br>${email}<br><small>${brief}</small><br><span style="color:green;font-weight:bold">✓ Received & Working</span></div>`;
-  let msg = `Hello, this is Crown Agency Uganda 👑%0AWe have RECEIVED your job: *${project}*%0AStatus: We are now working on it!%0A%0APlease send 50% deposit to MTN MoMo: 0766593537 (Namakoye Shanita)%0ASend screenshot after paying.%0A%0AThank you!`;
-  if(confirm('Project saved! Send confirmation to client now on WhatsApp?')){
-     window.open(`https://wa.me/${email}?text=${msg}`, '_blank');
-     window.open(`https://wa.me/?text=${msg}`, '_blank');
-  }
-  document.getElementById('email').value=''; 
-  document.getElementById('project').value=''; 
-  document.getElementById('brief').value='';
+ let e = document.getElementById('email').value;
+ let p = document.getElementById('project').value;
+ let b = document.getElementById('brief').value;
+ if(!e || !p){alert("Please add Email and Project Name");return;}
+ let msg = "PROJECT RECEIVED ✅\n\nHello! We have received your project: "+p+". Our team at Crown Agency Uganda is now working on it. We will update you shortly. \n\n💰 Reminder: 50% deposit to start: MTN 0766593537\n\nThank you for choosing us! 👑";
+ // Save to screen
+ document.getElementById('list').innerHTML = "<b>✅ "+p+"</b><br>Client: "+e+"<br>Brief: "+b+"<br><small>Created now - Awaiting 50% deposit</small><hr>" + document.getElementById('list').innerHTML;
+ 
+ // THE PROVISION - Auto ask to send WhatsApp confirmation
+ if(confirm("Project saved! ✅\n\nSend confirmation to client now?\n\nIt will say: We received your job and we are working on it")){
+   let phone = prompt("Enter client's WhatsApp number (e.g. 256...)","256");
+   if(phone){
+     window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(msg),"_blank");
+   }
+ }
+ document.getElementById('email').value="";
+ document.getElementById('project').value="";
+ document.getElementById('brief').value="";
 }
 </script>
 </body>
